@@ -38,7 +38,7 @@ var myGameArea = {
 }
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 120, 360);
+    myGamePiece = new component(100, 100, "red", 120, 360, "image");
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
@@ -61,6 +61,10 @@ function component(width, height, color, x, y, type) {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(this.text, this.x, this.y);
+
+        } else if (this.type == "image"){
+            drawPNGImage("assets/profiles/nicki-minaj.png", x, y, width, height);
+        
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -251,4 +255,12 @@ function checkImageChangeAverage() {
           }
         
     
+}
+
+function drawPNGImage(url, x, y, w, h){
+    const image = new Image();
+    image.src = url;
+    image.onload = () => {
+       myGameArea.context.drawImage(image, x, y, w, h)
+    }
 }
