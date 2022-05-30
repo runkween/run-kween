@@ -16,9 +16,11 @@ var myScore;
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 270;
+        this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
+        this.context.fillStyle = "pink"
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
@@ -26,6 +28,8 @@ var myGameArea = {
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.fillStyle = "pink"
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function(){
         this.started = false;
@@ -34,7 +38,7 @@ var myGameArea = {
 }
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 120, 120);
+    myGamePiece = new component(30, 30, "red", 120, 360);
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
@@ -102,18 +106,19 @@ function updateGameArea() {
     myGameArea.clear();
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
-        x = myGameArea.canvas.width;
+        width = myGameArea.canvas.width;
+        height = myGameArea.canvas.height;
         minHeight = 20;
         maxHeight = 200;
-        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        height = 20;
         minGap = 50;
         maxGap = 200;
-        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        gap = 20;
+        myObstacles.push(new component(10, 40, "white", width/2 - 5, 0));
+        //myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1;
+        myObstacles[i].y += 1;
         myObstacles[i].update();
     }
     myScore.text="SCORE: " + myGameArea.frameNo;
