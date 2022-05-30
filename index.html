@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script src="js/app.js"></script>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+<button id="but" onclick="startMotionDetection()">Start Motion detection</button>
+<button id="but" onclick="stopMotionDetection()">Stop Motion detection</button>
+<div>
+    <video id="vid" autoplay playsinline width="640" height="480"></video>
+</div>
+<canvas id="canvas-source" width="640" height="480"></canvas>
+<canvas id="canvas-blended" width="640" height="480"></canvas>
+</body>
+</html>
