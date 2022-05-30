@@ -12,34 +12,34 @@ let interval;
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 270;
-        this.canvas.height = 480;
-        this.context = this.canvas.getContext("2d");
-        this.context.fillStyle = "pink"
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.frameNo = 0;
-        this.interval = setInterval(updateGameArea, 20);
-        this.started = true;
-        },
-    clear : function() {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.context.fillStyle = "pink"
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    stop : function(){
-        this.started = false;
-        clearInterval(this.interval);
-    }
-}
+var myGameArea;
 
 function startGame() {
-    myGamePiece = new component(100, 100, "red", 120, 360, "image");
-    myGamePiece.gravity = 0.05;
+    myGameArea = {
+        canvas : document.getElementById("myCanvas"),
+        start : function() {
+            this.canvas.width = this.canvas.width
+            this.canvas.height = this.canvas.height
+            this.context = this.canvas.getContext("2d");
+            this.context.fillStyle = "pink"
+            this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+            this.frameNo = 0;
+            this.interval = setInterval(updateGameArea, 20);
+            this.started = true;
+            },
+        clear : function() {
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.context.fillStyle = "pink"
+            this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        },
+        stop : function(){
+            this.started = false;
+            clearInterval(this.interval);
+        }
+    }
+    //myGamePiece = new component(100, 100, "red", 120, 360, "image");
+    //myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
@@ -128,7 +128,7 @@ function updateGameArea() {
     myScore.text="SCORE: " + myGameArea.frameNo;
     myScore.update();
     //myGamePiece.newPos();
-    myGamePiece.update();
+    //myGamePiece.update();
 }
 
 function everyinterval(n) {

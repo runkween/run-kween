@@ -3,17 +3,28 @@
 
 <html>
 <head>
+<link rel="stylesheet" href="css/app.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
+    
 canvas {
     border:1px solid #d3d3d3;
-    background-color: #f1f1f1;
+    background-color: pink;
 }
 </style>
 </head>
 <body>
 <button id="but" onclick="startMotionDetection()">Start Motion detection</button>
 <button id="but" onclick="stopMotionDetection()">Stop Motion detection</button>
+
+<div class="container" style="width: 260; height: 480;">
+    <div class="inner">
+        <canvas id="myCanvas" width="270" height="480" class="inner"></canvas>
+    </div>
+    <div class="inner" style="z-index: 10; left: 80px; top: 310px;">
+        <img src="assets/profiles/nicki-minaj.png" height="100" width="100" />
+    </div>    
+</div>
 <div>
     <video id="vid" autoplay playsinline width="640" height="480"></video>
 </div>
