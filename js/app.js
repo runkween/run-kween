@@ -8,11 +8,19 @@ let video;
 let timeOut, lastImageData;
 let interval;
 
+
 //Game stuff
 var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myGameArea;
+
+//the  iced tea
+var icedTea = new Image();
+icedTea.src = "assets/objects/iced-coffee.png";
+// icedTea.onload = () => {
+//    myGameArea.context.drawImage(image, x, y, w, h)
+// }
 
 function startGame() {
     myGameArea = {
@@ -63,7 +71,7 @@ function component(width, height, color, x, y, type) {
             ctx.fillText(this.text, this.x, this.y);
 
         } else if (this.type == "image"){
-            drawPNGImage("assets/profiles/nicki-minaj.png", x, y, width, height);
+            myGameArea.context.drawImage(icedTea, this.x, this.y, this.width, this.height)
         
         } else {
             ctx.fillStyle = color;
@@ -118,7 +126,7 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = 20;
-        myObstacles.push(new component(10, 40, "white", width/2 - 5, 0));
+        myObstacles.push(new component(100, 100, "white", width/2 - 5, 0, "image"));
         //myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
