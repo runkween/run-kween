@@ -18,6 +18,10 @@ var myGameArea;
 //the  iced tea
 var icedTea = new Image();
 icedTea.src = "assets/objects/iced-coffee.png";
+
+//User image
+var userPic = new Image();
+userPic.src = ""
 // icedTea.onload = () => {
 //    myGameArea.context.drawImage(image, x, y, w, h)
 // }
@@ -44,6 +48,10 @@ function startGame() {
         stop : function(){
             this.started = false;
             clearInterval(this.interval);
+        },
+        resume : function(){
+            this.interval = setInterval(updateGameArea, 20);
+            this.started = true;
         }
     }
     //myGamePiece = new component(100, 100, "red", 120, 360, "image");
@@ -126,11 +134,11 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = 20;
-        myObstacles.push(new component(100, 100, "white", width/2 - 5, 0, "image"));
+        myObstacles.push(new component(100, 100, "white", width, height/2 + 50, "image"));
         //myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].y += 1;
+        myObstacles[i].x += -1;
         myObstacles[i].update();
     }
     myScore.text="SCORE: " + myGameArea.frameNo;
@@ -256,7 +264,7 @@ function checkImageChangeAverage() {
           console.log(average);
           if (average > 20) {
               if (myGameArea.started === false){
-                  myGameArea.start();
+                  myGameArea.resume();
               }
           } else {
               myGameArea.stop();
