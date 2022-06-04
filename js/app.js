@@ -21,7 +21,7 @@ icedTea.src = "assets/objects/iced-coffee.png";
 
 //User image
 var userPic = new Image();
-userPic.src = ""
+userPic.src = "assets/profiles/nicki-minaj.png"
 // icedTea.onload = () => {
 //    myGameArea.context.drawImage(image, x, y, w, h)
 // }
@@ -54,14 +54,15 @@ function startGame() {
             this.started = true;
         }
     }
-    //myGamePiece = new component(100, 100, "red", 120, 360, "image");
+    myGamePiece = new component(100, 100, "red", myGameArea.canvas.width / 4, myGameArea.canvas.height / 2 - 50 , "image", userPic);
     //myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
 
-function component(width, height, color, x, y, type) {
+function component(width, height, color, x, y, type, image) {
     this.type = type;
+    this.image = image;
     this.score = 0;
     this.width = width;
     this.height = height;
@@ -79,7 +80,7 @@ function component(width, height, color, x, y, type) {
             ctx.fillText(this.text, this.x, this.y);
 
         } else if (this.type == "image"){
-            myGameArea.context.drawImage(icedTea, this.x, this.y, this.width, this.height)
+            myGameArea.context.drawImage(this.image, this.x, this.y, this.width, this.height)
         
         } else {
             ctx.fillStyle = color;
@@ -118,11 +119,11 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-    // for (i = 0; i < myObstacles.length; i += 1) {
-    //     if (myGamePiece.crashWith(myObstacles[i])) {
-    //         return;
-    //     } 
-    // }
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            myObstacles.shift();
+        } 
+    }
     myGameArea.clear();
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
@@ -134,7 +135,7 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = 20;
-        myObstacles.push(new component(100, 100, "white", width, height/2 + 50, "image"));
+        myObstacles.push(new component(100, 100, "white", width, myGameArea.canvas.height / 2 - 50 , "image", icedTea));
         //myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
@@ -144,7 +145,7 @@ function updateGameArea() {
     myScore.text="SCORE: " + myGameArea.frameNo;
     myScore.update();
     //myGamePiece.newPos();
-    //myGamePiece.update();
+    myGamePiece.update();
 }
 
 function everyinterval(n) {
