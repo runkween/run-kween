@@ -8,21 +8,30 @@
 <style>
     
 canvas {
-    border:1px solid #d3d3d3;
     background-color: pink;
+}
+
+* { padding: 0; margin: 0; }
+html, body {
+    min-height: 100% !important;
+    height: 100%;
 }
 </style>
 </head>
 <body>
+
+
 <button id="but" onclick="startMotionDetection()">Start Motion detection</button>
 <button id="but" onclick="stopMotionDetection()">Stop Motion detection</button>
-<div>
-    <canvas id="myCanvas" width="1000" height="270px" ></canvas>
+
+<canvas id="myCanvas" width="100%" height="100%" ></canvas>
+
+
+<div style="width: 100%; background-color: greenyellow;">
+<video id="vid" autoplay playsinline width="640" height="480" style="display:none;"></video>   
+<canvas id="canvas-source" width="640" height="480" style="display: none;"></canvas>
+<canvas id="canvas-blended" width="640" height="480", style="display: none;"></canvas>    
 </div>
-<div>
-    <video id="vid" autoplay playsinline width="640" height="480"></video>
-</div>
-<canvas id="canvas-source" width="640" height="480" style="visibility: hidden;"></canvas>
-<canvas id="canvas-blended" width="640" height="480", style="visibility: hidden;"></canvas>
+
 </body>
 </html>

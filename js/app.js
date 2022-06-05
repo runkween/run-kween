@@ -14,6 +14,7 @@ var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myGameArea;
+var milliePiece;
 
 //the  iced tea
 var icedTea = new Image();
@@ -21,17 +22,19 @@ icedTea.src = "assets/objects/iced-coffee.png";
 
 //User image
 var userPic = new Image();
-userPic.src = "assets/profiles/nicki-minaj.png"
-// icedTea.onload = () => {
-//    myGameArea.context.drawImage(image, x, y, w, h)
-// }
+userPic.src = "assets/profiles/jc-crying.png"
+
+//Millie imabe
+var mbb = new Image();
+mbb.src = "assets/profiles/mbb.png"
 
 function startGame() {
     myGameArea = {
+        parkDiv : document.getElementById("park-div"),
         canvas : document.getElementById("myCanvas"),
         start : function() {
-            this.canvas.width = this.canvas.width
-            this.canvas.height = this.canvas.height
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
             this.context = this.canvas.getContext("2d");
             this.context.fillStyle = "pink"
             this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -54,7 +57,8 @@ function startGame() {
             this.started = true;
         }
     }
-    myGamePiece = new component(100, 100, "red", myGameArea.canvas.width / 4, myGameArea.canvas.height / 2 - 50 , "image", userPic);
+    myGamePiece = new component(200, 300, "red", window.innerWidth / 4, window.innerHeight / 2 - 150 , "image", userPic);
+    milliePiece = new component(300, 300, "red", 0, window.innerHeight / 2 - 150 , "image", mbb);
     //myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
@@ -146,6 +150,7 @@ function updateGameArea() {
     myScore.update();
     //myGamePiece.newPos();
     myGamePiece.update();
+    milliePiece.update();
 }
 
 function everyinterval(n) {
