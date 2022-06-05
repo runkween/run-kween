@@ -42,6 +42,7 @@ function startGame() {
             this.frameNo = 0;
             this.interval = setInterval(updateGameArea, 20);
             this.started = true;
+            this.score = 0;
             },
         clear : function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -60,7 +61,7 @@ function startGame() {
     myGamePiece = new component(200, 300, "red", window.innerWidth / 4, window.innerHeight / 2 - 150 , "image", userPic);
     milliePiece = new component(300, 300, "red", 0, window.innerHeight / 2 - 150 , "image", mbb);
     //myGamePiece.gravity = 0.05;
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myScore = new component("30px", "Consolas", "black", window.innerWidth * 0.8 , 20 + 50, "text");
     myGameArea.start();
 }
 
@@ -126,6 +127,7 @@ function updateGameArea() {
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
             myObstacles.shift();
+            myGameArea.score += 1;
         } 
     }
     myGameArea.clear();
@@ -146,7 +148,7 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text="SCORE: " + myGameArea.frameNo;
+    myScore.text="SCORE: " + myGameArea.score;
     myScore.update();
     //myGamePiece.newPos();
     myGamePiece.update();
