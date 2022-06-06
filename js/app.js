@@ -12,6 +12,7 @@ let interval;
 //Game stuff
 var myGamePiece;
 var myObstacles = [];
+var roadMarkers = [];
 var myScore;
 var myGameArea;
 var milliePiece;
@@ -58,6 +59,14 @@ function startGame() {
             this.started = true;
         }
     }
+    //add markers before the games starts
+    let markerX = 40
+    for (i = 0; i < 8; i += 1) {
+        roadMarkers.push(new component(40, 20, "white", markerX, window.innerHeight * 0.2 - 10));
+        roadMarkers.push(new component(40, 20, "white", markerX, window.innerHeight * 0.8 - 10));
+        markerX += 40 * 4
+    }
+    // Add the user picture
     myGamePiece = new component(200, 300, "red", window.innerWidth / 4, window.innerHeight / 2 - 150 , "image", userPic);
     milliePiece = new component(300, 300, "red", 0, window.innerHeight / 2 - 150 , "image", mbb);
     //myGamePiece.gravity = 0.05;
@@ -142,11 +151,18 @@ function updateGameArea() {
         maxGap = 200;
         gap = 20;
         myObstacles.push(new component(100, 100, "white", width, myGameArea.canvas.height / 2 - 50 , "image", icedTea));
+        roadMarkers.push(new component(40, 20, "white", width, myGameArea.canvas.height * 0.2 - 10));
+        roadMarkers.push(new component(40, 20, "white", width, myGameArea.canvas.height * 0.8 - 10));
         //myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
         myObstacles[i].update();
+    }
+
+    for (i = 0; i < roadMarkers.length; i += 1) {
+        roadMarkers[i].x += -1;
+        roadMarkers[i].update();
     }
     myScore.text="SCORE: " + myGameArea.score;
     myScore.update();
