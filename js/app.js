@@ -73,7 +73,8 @@ function startGame() {
     // Add the user picture
     myGamePiece = new component(200, 300, "red", window.innerWidth / 4, window.innerHeight / 2 - 150 , "image", userPic);
     //Add the username below the picture
-    userNameComponent = new component("30px", "Consolas", "black", window.innerWidth / 4, window.innerHeight / 2 - 150 + 300 + 16, "text");
+    const userNameWidth = getTextWidth("30px Consolas", userName);
+    userNameComponent = new component("30px", "Consolas", "black", window.innerWidth / 4 + 100 - userNameWidth/2, window.innerHeight / 2 - 150 + 300 + 16, "text");
     //Add millie
     milliePiece = new component(300, 300, "red", 0, window.innerHeight / 2 - 150 , "image", mbb);
     //myGamePiece.gravity = 0.05;
@@ -136,6 +137,16 @@ function component(width, height, color, x, y, type, image) {
         }
         return crash;
     }
+}
+
+
+    //Function to return the width
+function getTextWidth(fontName, text) {
+    const fontCanvas = document.getElementById("font-canvas");
+    const context = fontCanvas.getContext("2d");
+    context.font = fontName;
+    let metrics = context.measureText(text);
+    return metrics.width;
 }
 
 function updateGameArea() {
