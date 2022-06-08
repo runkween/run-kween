@@ -8,6 +8,10 @@ let video;
 let timeOut, lastImageData;
 let interval;
 
+//User name
+var userName;
+var userNameComponent;
+
 
 //Game stuff
 var myGamePiece;
@@ -68,6 +72,9 @@ function startGame() {
     }
     // Add the user picture
     myGamePiece = new component(200, 300, "red", window.innerWidth / 4, window.innerHeight / 2 - 150 , "image", userPic);
+    //Add the username below the picture
+    userNameComponent = new component("30px", "Consolas", "black", window.innerWidth / 4, window.innerHeight / 2 - 150 + 300 + 16, "text");
+    //Add millie
     milliePiece = new component(300, 300, "red", 0, window.innerHeight / 2 - 150 , "image", mbb);
     //myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "black", window.innerWidth * 0.8 , 20 + 50, "text");
@@ -164,8 +171,12 @@ function updateGameArea() {
         roadMarkers[i].x += -1;
         roadMarkers[i].update();
     }
+    //Update the score
     myScore.text="SCORE: " + myGameArea.score;
     myScore.update();
+    //Update the user name
+    userNameComponent.text = userName;
+    userNameComponent.update();
     //myGamePiece.newPos();
     myGamePiece.update();
     milliePiece.update();
@@ -210,6 +221,7 @@ function init() {
 function startMotionDetection() {
     let popupForm = document.getElementById("popup-form");
     popupForm.style.display = "none";
+    userName = document.getElementById("username-field").value;
     init()
     startGame()
     interval = window.setInterval(update, 800);
