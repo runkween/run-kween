@@ -208,6 +208,8 @@ function init() {
 }
 
 function startMotionDetection() {
+    let popupForm = document.getElementById("popup-form");
+    popupForm.style.display = "none";
     init()
     startGame()
     interval = window.setInterval(update, 800);

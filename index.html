@@ -11,10 +11,15 @@ canvas {
     background-color: pink;
 }
 
-* { padding: 0; margin: 0; }
+* { 
+  padding: 0; margin: 0;
+  font-family: Poppins, sans-serif;
+ }
 html, body {
+    background-color: pink;
     min-height: 100% !important;
     height: 100%;
+    
 }
 </style>
 </head>
@@ -23,6 +28,25 @@ html, body {
 
 <button id="but" onclick="startMotionDetection()">Start Motion detection</button>
 <button id="but" onclick="stopMotionDetection()">Stop Motion detection</button>
+
+<div id="popup-form" class="popup">
+  <h2>Welcome to the run kweeeeeeeen ! &#128133;</h2> 
+  <p>If you're here, you've probably put on some weight &#129328; &#128004;</p>
+  <p>Guess what ? me too boo and we ain't getting hot studs with that nasty
+    belly fat jiggling &#128557;
+  </p>
+  <p style="margin-bottom: 16px;">So get your hoe ass up and start running: </p>
+  <p style="margin-bottom: 16px;">The website uses your laptop camera to check if you're moving. Try to move
+    as many limbs as possible to burn calories (and get detected by the camera) like this: 
+  </p>
+  <iframe style="margin-bottom: 16px;" src="https://giphy.com/embed/ckMk3RKUK29lziaspI" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/jumping-jacks-ckMk3RKUK29lziaspI">via GIPHY</a></p>
+  <p style="margin-bottom: 16px; margin-top: 16px;">BONUS MOTIVATION: Millie is after your ass so you better hurry up. If you stop
+    running for more that 3 seconds she will catch you
+  </p>
+  <p>Please enter your name: </p> 
+  <input type="text" style="margin: 25px;">
+  <button type="button" onclick="startMotionDetection()">Start</button>
+</div>
 
 <canvas id="myCanvas" width="100%" height="100%" ></canvas>
 
