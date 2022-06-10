@@ -12,9 +12,12 @@ let interval;
 var userName;
 var userNameComponent;
 
+//Restart popu
+var restartPopup;
+
 //Game countdown
 var countdown = 0;
-const TOLERANCE = 10;
+const TOLERANCE = 5;
 //Game stuff
 var myGamePiece;
 var myObstacles = [];
@@ -37,7 +40,6 @@ mbb.src = "assets/profiles/mbb.png"
 
 function startGame() {
     myGameArea = {
-        parkDiv : document.getElementById("park-div"),
         canvas : document.getElementById("myCanvas"),
         start : function() {
             this.canvas.width = window.innerWidth;
@@ -234,13 +236,19 @@ function init() {
 function startMotionDetection() {
     let popupForm = document.getElementById("popup-form");
     popupForm.style.display = "none";
-    userName = document.getElementById("username-field").value;
+    //Get restart popup
+    restartPopup = document.getElementById("restart-popup");
+    restartPopup.style.display = "none";
+    userName = userName || document.getElementById("username-field").value;
     init()
     startGame()
     interval = window.setInterval(update, 800);
 }
 
 function stopMotionDetection(){
+    restartPopup.style.display = "block";
+    let scoreHtml = document.getElementById("score");
+    scoreHtml.innerHTML = "SCORE: " + myGameArea.score;
     window.clearInterval(interval);
     myGameArea.stop();
 }
@@ -318,10 +326,11 @@ function checkImageChangeAverage() {
     console.log(countdown);
     if (countdown >= TOLERANCE - 1) {
        countdownDiv.style.display = "none";
+       countdown = 0;
        stopMotionDetection(); 
        return;
     } 
-    if (average > 20) {
+    if (average > 30) {
         if (myGameArea.started === false && countdown < TOLERANCE){
             myGameArea.resume();
             countdown = 0;

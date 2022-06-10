@@ -28,7 +28,16 @@ html, body {
 
 <h1 id="stop-running-counter"></h1>
 
-<div id="popup-form" class="popup">
+<div id="restart-popup" class="popup" style="display: none;">
+  <h1 id="score" style="margin: 16px;"></h1>
+  <iframe style="margin-bottom: 16px;" src="https://giphy.com/embed/3o72FdYCElrUbbriA8" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/rupaulsdragraces8-season-8-rupauls-drag-race-08x03-3o72FdYCElrUbbriA8">via GIPHY</a></p>
+  <p style="margin-top: 16px;">Good run! queen &#128131; Try to improve your score next time</p>
+  <p  style="margin-top: 16px;">&#9940; Ohh wait! why not improving it now ? &#9940;</p>
+  <p style="margin-top: 16px;">&#128317; &#128317; &#128317; &#128317;</p>
+  <button type="button" onclick="startMotionDetection()">Restart</button>
+</div>
+
+<div id="popup-form" class="popup" style="transform: translate(-50%, -30%)">
   <h2>Welcome to the run kweeeeeeeen ! &#128133;</h2> 
   <p>If you're here, you've probably put on some weight &#129328; &#128004;</p>
   <p>Guess what ? me too boo and we ain't getting hot studs with that nasty
@@ -40,7 +49,7 @@ html, body {
   </p>
   <iframe style="margin-bottom: 16px;" src="https://giphy.com/embed/ckMk3RKUK29lziaspI" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/jumping-jacks-ckMk3RKUK29lziaspI">via GIPHY</a></p>
   <p style="margin-bottom: 16px; margin-top: 16px;">BONUS MOTIVATION: Millie is after your ass so you better hurry up. If you stop
-    running for more than 10 seconds she will catch you
+    running for more than 5 seconds she will catch you
   </p>
   <p>Please enter your name: </p> 
   <input id="username-field" type="text" style="margin: 25px;">
