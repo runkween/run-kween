@@ -42,3 +42,12 @@
   cursor: pointer;
   box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
+
+#stop-running-counter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  color: white;
+  font-size: 400px;
+}

@@ -12,7 +12,9 @@ let interval;
 var userName;
 var userNameComponent;
 
-
+//Game countdown
+var countdown = 0;
+const TOLERANCE = 10;
 //Game stuff
 var myGamePiece;
 var myObstacles = [];
@@ -308,16 +310,29 @@ function checkImageChangeAverage() {
         average += (blendedData.data[i*4] + blendedData.data[i*4+1] + blendedData.data[i*4+2]) / 3;
         ++i;
     }
-          // calculate an average between of the color values of the drum area
-          average = Math.round(average / (blendedData.data.length * 0.25));
-          console.log(average);
-          if (average > 20) {
-              if (myGameArea.started === false){
-                  myGameArea.resume();
-              }
-          } else {
-              myGameArea.stop();
-          }
+    // calculate an average between of the color values of the drum area
+    average = Math.round(average / (blendedData.data.length * 0.25));
+    // get the countdown div
+    const countdownDiv = document.getElementById("stop-running-counter");
+    //If the countdown is more than 3 we stop the motion detection
+    console.log(countdown);
+    if (countdown >= TOLERANCE - 1) {
+       countdownDiv.style.display = "none";
+       stopMotionDetection(); 
+       return;
+    } 
+    if (average > 20) {
+        if (myGameArea.started === false && countdown < TOLERANCE){
+            myGameArea.resume();
+            countdown = 0;
+            countdownDiv.style.display = "none";
+            }
+        } else {
+            myGameArea.stop();
+            countdownDiv.style.display = "block";
+            countdownDiv.innerHTML = countdown + 1;
+            countdown++;
+        }
         
     
 }
